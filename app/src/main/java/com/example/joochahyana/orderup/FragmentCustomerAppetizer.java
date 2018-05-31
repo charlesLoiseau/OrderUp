@@ -18,13 +18,23 @@ public class FragmentCustomerAppetizer extends Fragment{
 
     AdapterCustomerAppetizer adapter;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         ArrayList<ListCustomerAppetizer> arrayListCustomerAppetizer = new ArrayList<ListCustomerAppetizer>();
         adapter = new AdapterCustomerAppetizer(getActivity(), arrayListCustomerAppetizer);
 
+
+  /*
+        foodNumber = arrayListCustomerAppetizer.size();
+        for(int i=0; i<foodNumber; i++){
+            adapter.add(arrayListCustomerAppetizer.get(i));
+
+        }
+     */
         ListCustomerAppetizer food1 = new ListCustomerAppetizer("Food Name 1", "Description of food 1", "$10.00", R.drawable.pic01);
         adapter.add(food1);
         ListCustomerAppetizer food2 = new ListCustomerAppetizer("Food Name 2", "Description of food 2", "$20.00", R.drawable.pic02);
@@ -35,6 +45,8 @@ public class FragmentCustomerAppetizer extends Fragment{
         adapter.add(food4);
         ListCustomerAppetizer food5 = new ListCustomerAppetizer("Food Name 5", "Description of food 5", "$50.00", R.drawable.pic05);
         adapter.add(food5);
+
+
     }
 
     @Nullable

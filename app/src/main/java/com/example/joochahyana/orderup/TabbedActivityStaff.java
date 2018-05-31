@@ -150,6 +150,10 @@ public class TabbedActivityStaff extends AppCompatActivity {
                 case 2:
                     FragmentStaffBills fragmentStaffBills = new FragmentStaffBills();
                     return fragmentStaffBills;
+                case 3:
+                    FragmentStaffFoods fragmentStaffFoods = new FragmentStaffFoods();
+                    return fragmentStaffFoods;
+
                 default:
                     return null;
             }
@@ -157,8 +161,8 @@ public class TabbedActivityStaff extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 4 total pages.
+            return 4;
         }
 
         @Override
@@ -170,6 +174,8 @@ public class TabbedActivityStaff extends AppCompatActivity {
                     return "Tables";
                 case 2:
                     return "Bills";
+                case 3:
+                    return "Foods";
             }
             return null;
         }
