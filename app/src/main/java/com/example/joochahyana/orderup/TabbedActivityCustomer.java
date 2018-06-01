@@ -76,6 +76,7 @@ public class TabbedActivityCustomer extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
 
 
+
         getMenuInflater().inflate(R.menu.menu_tabbed_activity_customer, menu);
         return true;
     }

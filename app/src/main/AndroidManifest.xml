@@ -9,17 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".TabbedActivityCustomer"
             android:label="@string/title_activity_tabbed_customer"
@@ -28,6 +28,8 @@
             android:name=".TabbedActivityStaff"
             android:label="@string/title_activity_tabbed_staff"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".FoodAddStaff" />
+        <activity android:name=".foodstaffActivity"></activity>
     </application>
 
 </manifest>

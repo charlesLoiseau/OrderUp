@@ -27,7 +27,7 @@
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:text="Name"
-                android:id=``"@+id/textCustomerAppetizerName"/>
+                android:id="@+id/textCustomerAppetizerName"/>
 
             <TextView
                 android:layout_width="wrap_content"
