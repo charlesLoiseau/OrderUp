@@ -16,36 +16,28 @@ import java.util.ArrayList;
 
 public class FragmentCustomerAppetizer extends Fragment{
 
-    AdapterCustomerAppetizer adapter;
-
+     AdapterCustomerAppetizer adapter;
+    ArrayList<Foods> arrayListCustomerAppetizer;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-        ArrayList<ListCustomerAppetizer> arrayListCustomerAppetizer = new ArrayList<ListCustomerAppetizer>();
+        arrayListCustomerAppetizer = new ArrayList<Foods>();
         adapter = new AdapterCustomerAppetizer(getActivity(), arrayListCustomerAppetizer);
 
 
-  /*
-        foodNumber = arrayListCustomerAppetizer.size();
-        for(int i=0; i<foodNumber; i++){
-            adapter.add(arrayListCustomerAppetizer.get(i));
-
-        }
-     */
-        ListCustomerAppetizer food1 = new ListCustomerAppetizer("Food Name 1", "Description of food 1", "$10.00", R.drawable.pic01);
+        Foods food1 = new Foods("Food Name 1", "Description of food 1", "$10.00", R.drawable.pic01,Foods.Appetizer);
         adapter.add(food1);
-        ListCustomerAppetizer food2 = new ListCustomerAppetizer("Food Name 2", "Description of food 2", "$20.00", R.drawable.pic02);
+        Foods food2 = new Foods("Food Name 2", "Description of food 2", "$20.00", R.drawable.pic02,Foods.Appetizer);
         adapter.add(food2);
-        ListCustomerAppetizer food3 = new ListCustomerAppetizer("Food Name 3", "Description of food 3", "$30.00", R.drawable.pic03);
+        Foods food3 = new Foods("Food Name 3", "Description of food 3", "$30.00", R.drawable.pic03,Foods.Appetizer);
         adapter.add(food3);
-        ListCustomerAppetizer food4 = new ListCustomerAppetizer("Food Name 4", "Description of food 4", "$40.00", R.drawable.pic04);
+        Foods food4 = new Foods("Food Name 4", "Description of food 4", "$40.00", R.drawable.pic04,Foods.Appetizer);
         adapter.add(food4);
-        ListCustomerAppetizer food5 = new ListCustomerAppetizer("Food Name 5", "Description of food 5", "$50.00", R.drawable.pic05);
+        Foods food5 = new Foods("Food Name 5", "Description of food 5", "$50.00", -1,Foods.Appetizer);
         adapter.add(food5);
-
 
     }
 
