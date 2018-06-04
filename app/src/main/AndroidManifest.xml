@@ -4,28 +4,22 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name="com.orm.SugarApp">
-
-        <meta-data android:name="DATABASE" android:value="orderUp.db" />
-        <meta-data android:name="VERSION" android:value="2" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.example" />
-
+        android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".TabbedActivityCustomer"
             android:label="@string/title_activity_tabbed_customer"
@@ -34,6 +28,8 @@
             android:name=".TabbedActivityStaff"
             android:label="@string/title_activity_tabbed_staff"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".FoodAddStaff" />
+        <activity android:name=".foodstaffActivity"></activity>
     </application>
 
 </manifest>

@@ -16,13 +16,13 @@ import java.util.ArrayList;
  * Created by Joanna Chahyana on 9/5/2018.
  */
 
-public class AdapterCustomerAppetizer extends ArrayAdapter<ListCustomerAppetizer> {
+public class AdapterCustomerAppetizer extends ArrayAdapter<Foods> {
     private String[] name;
     private String[] description;
     private String[] price;
     private Integer[] photo;
 
-    public AdapterCustomerAppetizer(@NonNull Context context, ArrayList<ListCustomerAppetizer> listCustomerAppetizers) {
+    public AdapterCustomerAppetizer(@NonNull Context context, ArrayList<Foods> listCustomerAppetizers) {
         super(context, R.layout.custom_customer_appetizer, listCustomerAppetizers);
     }
 
@@ -33,17 +33,17 @@ public class AdapterCustomerAppetizer extends ArrayAdapter<ListCustomerAppetizer
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         View customView = layoutInflater.inflate(R.layout.custom_customer_appetizer, parent, false);
 
-        ListCustomerAppetizer listCustomerAppetizer = getItem(position);
+        Foods foodItem= getItem(position);
 
         TextView textName = (TextView) customView.findViewById(R.id.textCustomerAppetizerName);
         TextView textDescription = (TextView) customView.findViewById(R.id.textCustomerAppetizerDescription);
         TextView textPrice = (TextView) customView.findViewById(R.id.textCustomerAppetizerPrice);
         ImageView imagePhoto = (ImageView) customView.findViewById(R.id.imageCustomerAppetizer);
 
-        textName.setText(listCustomerAppetizer.name);
-        textDescription.setText(listCustomerAppetizer.description);
-        textPrice.setText(listCustomerAppetizer.price);
-        imagePhoto.setImageResource(listCustomerAppetizer.photo);
+        textName.setText( foodItem.name);
+        textDescription.setText( foodItem.description);
+        textPrice.setText( foodItem.price);
+        imagePhoto.setImageResource( foodItem.photo);
 
         return customView;
     }
