@@ -4,7 +4,7 @@ import com.orm.SugarRecord;
 
 import java.util.Date;
 
-public class DatabaseReceipt extends SugarRecord<DatabaseReceipt> {
+public class DatabaseReceipt extends SugarRecord {
     Date    time;
     Integer table;
     Double  price;

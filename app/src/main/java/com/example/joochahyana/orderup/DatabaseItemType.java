@@ -2,7 +2,7 @@ package com.example.joochahyana.orderup;
 
 import com.orm.SugarRecord;
 
-public class DatabaseItemType extends SugarRecord<DatabaseItemType> {
+public class DatabaseItemType extends SugarRecord {
     String  name;
 
     public DatabaseItemType() {

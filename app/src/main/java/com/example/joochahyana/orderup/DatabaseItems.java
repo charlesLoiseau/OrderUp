@@ -2,7 +2,7 @@ package com.example.joochahyana.orderup;
 
 import com.orm.SugarRecord;
 
-public class DatabaseItems extends SugarRecord<DatabaseItems> {
+public class DatabaseItems extends SugarRecord {
     String              name;
     Double              price;
     String              description;

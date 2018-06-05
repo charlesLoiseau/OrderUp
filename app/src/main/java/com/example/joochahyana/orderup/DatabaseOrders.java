@@ -4,7 +4,7 @@ import com.orm.SugarRecord;
 
 import java.util.Date;
 
-public class DatabaseOrders extends SugarRecord<DatabaseOrders> {
+public class DatabaseOrders extends SugarRecord {
     Date                time;
     Integer             table;
     Boolean             done;

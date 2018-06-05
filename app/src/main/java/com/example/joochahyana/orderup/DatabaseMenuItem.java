@@ -2,7 +2,7 @@ package com.example.joochahyana.orderup;
 
 import com.orm.SugarRecord;
 
-public class DatabaseMenuItem extends SugarRecord<DatabaseMenuItem> {
+public class DatabaseMenuItem extends SugarRecord {
     // Relationship
     DatabaseItems   item;
     DatabaseMenu    menu;
