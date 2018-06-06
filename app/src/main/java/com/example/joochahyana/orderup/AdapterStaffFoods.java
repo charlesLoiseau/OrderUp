@@ -24,7 +24,7 @@ public class AdapterStaffFoods extends ArrayAdapter<Foods> {
     private Integer[] photo;
 
     public AdapterStaffFoods(@NonNull Context context, ArrayList<Foods> listStaffFoods) {
-        super(context, R.layout.custom_customer_appetizer, listStaffFoods);
+        super(context, R.layout.custom_customer_menu, listStaffFoods);
     }
 
 

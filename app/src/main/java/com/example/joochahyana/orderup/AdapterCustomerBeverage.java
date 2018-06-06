@@ -16,14 +16,14 @@ import java.util.ArrayList;
  * Created by Joanna Chahyana on 9/5/2018.
  */
 
-public class AdapterCustomerAppetizer extends ArrayAdapter<Foods> {
+public class AdapterCustomerBeverage extends ArrayAdapter<Foods> {
     private String[] name;
     private String[] description;
     private String[] price;
     private Integer[] photo;
 
-    public AdapterCustomerAppetizer(@NonNull Context context, ArrayList<Foods> listCustomerAppetizers) {
-        super(context, R.layout.custom_customer_menu, listCustomerAppetizers);
+    public AdapterCustomerBeverage(@NonNull Context context, ArrayList<Foods> ListCustomerBeverages) {
+        super(context, R.layout.custom_customer_menu, ListCustomerBeverages);
     }
 
 
