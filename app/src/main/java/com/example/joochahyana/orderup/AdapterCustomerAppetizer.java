@@ -25,7 +25,7 @@ public class AdapterCustomerAppetizer extends ArrayAdapter<Foods> {
     private byte[] photo;
 
     public AdapterCustomerAppetizer(@NonNull Context context, ArrayList<Foods> listCustomerAppetizers) {
-        super(context, R.layout.custom_customer_appetizer, listCustomerAppetizers);
+        super(context, R.layout.custom_customer_menu, listCustomerAppetizers);
     }
 
 

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class FragmentCustomerAppetizer extends Fragment{
 
-    AdapterCustomerAppetizer adapter;
+     AdapterCustomerAppetizer adapter;
     ArrayList<Foods> arrayListCustomerAppetizer;
 
     @Override
