@@ -73,6 +73,19 @@ public class MainActivity extends AppCompatActivity {
             DatabaseItemType desserts = new DatabaseItemType("Desserts");
             desserts.save();
         }
+        // Cook -> Waiter -> Customer Order State
+        if (DatabaseOrderState.find(DatabaseOrderState.class, "name = ?","Cook").isEmpty()) {
+            DatabaseItemType cook = new DatabaseItemType("Cook");
+            cook.save();
+        }
+        if (DatabaseOrderState.find(DatabaseOrderState.class, "name = ?","Waiter").isEmpty()) {
+            DatabaseItemType waiter = new DatabaseItemType("Waiter");
+            waiter.save();
+        }
+        if (DatabaseOrderState.find(DatabaseOrderState.class, "name = ?","Customer").isEmpty()) {
+            DatabaseItemType customer = new DatabaseItemType("Customer");
+            customer.save();
+        }
 
     }
 

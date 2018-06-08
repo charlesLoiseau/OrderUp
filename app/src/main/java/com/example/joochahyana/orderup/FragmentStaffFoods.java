@@ -3,6 +3,7 @@ package com.example.joochahyana.orderup;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentStaffFoods extends Fragment{
-    Button addButton ,delButton;
+    FloatingActionButton addButton ,delButton;
     int i=0;
     AdapterStaffFoods adapter;
 
@@ -53,7 +54,7 @@ public class FragmentStaffFoods extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_staff_foods, container, false);
-        addButton = (Button)rootView.findViewById(R.id.buttonAdd);
+        addButton = (FloatingActionButton)rootView.findViewById(R.id.buttonAdd);
 
         addButton.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -66,6 +67,7 @@ public class FragmentStaffFoods extends Fragment{
         });
 
 
+        /*
         delButton = (Button)rootView.findViewById(R.id.buttonDel);
 
         delButton.setOnClickListener(new Button.OnClickListener(){
@@ -81,8 +83,7 @@ public class FragmentStaffFoods extends Fragment{
             }
 
         });
-
-
+        */
 
         return rootView;
     }

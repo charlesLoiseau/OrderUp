@@ -146,7 +146,7 @@ public class foodstaffActivity extends AppCompatActivity {
                 captureImagebyte = image_view2byte(caputreImage);
 
 
-                if (StringUtils.isEmpty(editTextFoodDes.getText()) || StringUtils.isEmpty(editTextFoodName.getText()) || StringUtils.isEmpty(editTextPrice.getText()) || StringUtils.isEmpty(editTextStock.getText()) || captureImagebyte == null) {
+                if (StringUtils.isEmpty(editTextFoodDes.getText()) /*|| StringUtils.isEmpty(editTextFoodName.getText()) || StringUtils.isEmpty(editTextPrice.getText()) || StringUtils.isEmpty(editTextStock.getText()) || captureImagebyte == null*/) {
                     Context context = getApplicationContext();
                     CharSequence text = "Incomplet informations";
                     int duration = Toast.LENGTH_SHORT;
