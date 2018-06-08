@@ -75,6 +75,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="2dp"
                 android:layout_marginEnd="2dp"
+                android:backgroundTint="#e46f6f"
                 android:text="Delete"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

@@ -40,8 +40,7 @@ public class AdapterStaffFoods extends ArrayAdapter<Foods> {
     private Context context;
 
     Button editButton;
-
-
+    Button deleteButton;
 
     public AdapterStaffFoods(@NonNull Context context, ArrayList<Foods> listStaffFoods) {
         super(context, R.layout.custom_staff_foods, listStaffFoods);
@@ -62,12 +61,24 @@ public class AdapterStaffFoods extends ArrayAdapter<Foods> {
         ImageView imagePhoto = (ImageView) staffView.findViewById(R.id.imageStaffAppetizer);
 
         editButton = (Button)staffView.findViewById(R.id.editButton);
+        deleteButton = (Button)staffView.findViewById(R.id.deleteButton);
 
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, foodstaffActivity.class);
+                Intent intent = new Intent(context, FragmentStaffFoods.class);
                 intent.putExtra("id", foods.id);
+                view.getContext().startActivity(intent);
+            }
+        });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, TabbedActivityStaff.class);
+                DatabaseItems item = DatabaseItems.findById(DatabaseItems.class, foods.id);
+                item.display = false;
+                item.save();
                 view.getContext().startActivity(intent);
             }
         });

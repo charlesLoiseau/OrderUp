@@ -8,6 +8,7 @@ public class DatabaseItems extends SugarRecord {
     Double              price;
     String              description;
     Integer             stock;
+    Boolean             display;
 
     // Relationship
     DatabaseItemType    itemType;
@@ -17,12 +18,13 @@ public class DatabaseItems extends SugarRecord {
 
     }
 
-    public DatabaseItems(DatabaseItemType itemType, String name, Double price, String description, Integer stock,DatabaseItemsImage itemImage) {
+    public DatabaseItems(DatabaseItemType itemType, String name, Double price, String description, Integer stock,DatabaseItemsImage itemImage, Boolean display) {
         this.itemType = itemType;
         this.name = name;
         this.price = price;
         this.description = description;
         this.stock = stock;
         this.itemImage = itemImage;
+        this.display = display;
     }
 }

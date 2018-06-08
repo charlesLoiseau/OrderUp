@@ -187,12 +187,13 @@ public class foodstaffActivity extends AppCompatActivity {
                     foodType = (RadioGroup)findViewById(R.id.radioGroup);
                     foodStock = Integer.parseInt(nullpointer_to_0string(editTextStock.getText().toString()));
                     DatabaseItemType dbFoodType = DatabaseItemType.find(DatabaseItemType.class, "name = ?", foodTypeName).get(0);
-                    item.itemImage.delete();
+                    if (item != null)
+                        item.itemImage.delete();
                     DatabaseItemsImage dbFoodImage = new DatabaseItemsImage(captureImagebyte);
                     dbFoodImage.save();
 
                     if (item == null) {
-                        DatabaseItems dbFood = new DatabaseItems(dbFoodType, foodName, foodPrice, foodDescrption, foodStock, dbFoodImage);
+                        DatabaseItems dbFood = new DatabaseItems(dbFoodType, foodName, foodPrice, foodDescrption, foodStock, dbFoodImage, true);
                         dbFood.save();
                         //DatabaseMenu dbMenu = new DatabaseMenu(foodName, foodPrice);                                                 // Should I get more foodName for menu as input?
                         //dbMenu.save();
