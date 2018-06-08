@@ -55,10 +55,11 @@
             android:layout_marginHorizontal="10dp">
 
             <Button
+                android:id="@+id/orderButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Order"/>
+                android:text="Order" />
 
         </LinearLayout>
 

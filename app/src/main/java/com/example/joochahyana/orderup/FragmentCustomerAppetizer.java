@@ -30,7 +30,7 @@ public class FragmentCustomerAppetizer extends Fragment{
         List<DatabaseItems> dbItems = DatabaseItems.listAll(DatabaseItems.class);
         for (int i = 0; i < dbItems.size(); i++) {
             if (dbItems.get(i).itemType.name.equals("Appetizers") && dbItems.get(i).display == true) {
-                Foods tempFood = new Foods(dbItems.get(i).name, dbItems.get(i).getId(), dbItems.get(i).description, dbItems.get(i).price, dbItems.get(i).itemImage.imageStream);
+                Foods tempFood = new Foods(dbItems.get(i).name, dbItems.get(i).getId(), dbItems.get(i).description, dbItems.get(i).price, dbItems.get(i).itemImage.imageStream,dbItems.get(i).stock);
                 adapter.add(tempFood);
             }
         }

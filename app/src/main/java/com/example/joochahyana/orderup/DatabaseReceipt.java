@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class DatabaseReceipt extends SugarRecord {
     Date    time;
-    Integer table;
+    Integer table_nb;
     Double  price;
     Boolean paid;
 
@@ -16,7 +16,7 @@ public class DatabaseReceipt extends SugarRecord {
 
     public DatabaseReceipt(Date time, Integer table, Double price, Boolean paid) {
         this.time = time;
-        this.table = table;
+        this.table_nb = table;
         this.price = price;
         this.paid = paid;
     }
