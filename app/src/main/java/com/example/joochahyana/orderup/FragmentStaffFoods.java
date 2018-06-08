@@ -17,6 +17,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
+
 public class FragmentStaffFoods extends Fragment{
     FloatingActionButton addButton ,delButton;
     int i=0;
@@ -40,12 +42,31 @@ public class FragmentStaffFoods extends Fragment{
          // jo
         List<DatabaseItems> dbItems = DatabaseItems.listAll(DatabaseItems.class);
 
+
         for(int i=0; i<dbItems.size(); i++){
+
             if (dbItems.get(i).display == true) {
-                Foods tempFood = new Foods(dbItems.get(i).name, dbItems.get(i).getId(), dbItems.get(i).description, dbItems.get(i).price, dbItems.get(i).itemImage.imageStream);
+                Foods tempFood = new Foods(dbItems.get(i).name,dbItems.get(i).getId(), dbItems.get(i).description, dbItems.get(i).price, dbItems.get(i).itemImage.imageStream,dbItems.get(i).stock);
                 adapter.add(tempFood);
             }
+
+
+
+
         }
+
+
+
+
+        /*
+        *
+ List<DatabaseReceipt> dbRecipt = DatabaseReceipt.listAll(DatabaseReceipt.class);
+
+        Log.d(TAG, "onCreate: "+dbRecipt.get(0).time.toString());
+
+
+        * */
+
 
     }
 
