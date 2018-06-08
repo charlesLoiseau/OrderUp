@@ -161,37 +161,38 @@
         app:layout_constraintVertical_bias="0.668">
 
         <RadioButton
-            android:id="@+id/apptizerButton"
+            android:id="@+id/appetizerButton"
             android:layout_width="393dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-
+            android:onClick="onFoodTypeSelect"
             android:layout_weight="1"
-            android:text="Appitizer  " />
+            android:text="Appetizer" />
 
         <RadioButton
             android:id="@+id/dishButton"
             android:layout_width="393dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
+            android:onClick="onFoodTypeSelect"
             android:layout_weight="1"
             android:text="Dish" />
 
         <RadioButton
-            android:id="@+id/beveragerButton"
+            android:id="@+id/beverageButton"
             android:layout_width="393dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-
             android:layout_weight="1"
-            android:text="Beverager" />
+            android:onClick="onFoodTypeSelect"
+            android:text="Beverage" />
 
         <RadioButton
             android:id="@+id/dessertButton"
             android:layout_width="393dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-
+            android:onClick="onFoodTypeSelect"
             android:layout_weight="1"
             android:text="Dessert" />
 

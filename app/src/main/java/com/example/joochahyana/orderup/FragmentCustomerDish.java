@@ -3,12 +3,14 @@ package com.example.joochahyana.orderup;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Joanna Chahyana on 8/5/2018.
@@ -16,7 +18,7 @@ import java.util.ArrayList;
 
 public class FragmentCustomerDish extends Fragment{
 
-    AdapterCustomerDish adapter;
+    AdapterCustomerDish adapter = null;
     ArrayList<Foods> arrayListCustomerDish;
 
     @Override
@@ -26,6 +28,14 @@ public class FragmentCustomerDish extends Fragment{
         arrayListCustomerDish = new ArrayList<Foods>();
         adapter = new AdapterCustomerDish(getActivity(), arrayListCustomerDish);
 
+
+        List<DatabaseItems> dbItems = DatabaseItems.listAll(DatabaseItems.class);
+        for (int i = 0; i < dbItems.size(); i++) {
+            if (dbItems.get(i).itemType.name.equals("Dishes")) {
+                Foods tempFood = new Foods(dbItems.get(i).name, dbItems.get(i).description, dbItems.get(i).price, dbItems.get(i).itemImage.imageStream);
+                adapter.add(tempFood);
+            }
+        }
     }
 
     @Nullable
@@ -37,7 +47,9 @@ public class FragmentCustomerDish extends Fragment{
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        ListView listView = (ListView) view.findViewById(R.id.listViewCustomerDessert);
-        listView.setAdapter(adapter);
+        ListView listView = (ListView) view.findViewById(R.id.listViewCustomerDish);
+        if (adapter != null) {
+            listView.setAdapter(adapter);
+        }
     }
 }

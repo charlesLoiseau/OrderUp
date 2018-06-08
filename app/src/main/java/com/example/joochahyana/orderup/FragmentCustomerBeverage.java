@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Joanna Chahyana on 8/5/2018.
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 public class FragmentCustomerBeverage extends Fragment{
 
-    AdapterCustomerBeverage adapter;
+    AdapterCustomerBeverage adapter = null;
     ArrayList<Foods> arrayListCustomerBeverage;
 
     @Override
@@ -25,7 +26,13 @@ public class FragmentCustomerBeverage extends Fragment{
 
         arrayListCustomerBeverage = new ArrayList<Foods>();
         adapter = new AdapterCustomerBeverage(getActivity(), arrayListCustomerBeverage);
-
+        List<DatabaseItems> dbItems = DatabaseItems.listAll(DatabaseItems.class);
+        for (int i = 0; i < dbItems.size(); i++) {
+            if (dbItems.get(i).itemType.name.equals("Beverages")) {
+                Foods tempFood = new Foods(dbItems.get(i).name, dbItems.get(i).description, dbItems.get(i).price, dbItems.get(i).itemImage.imageStream);
+                adapter.add(tempFood);
+            }
+        }
     }
 
     @Nullable
@@ -38,6 +45,8 @@ public class FragmentCustomerBeverage extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         ListView listView = (ListView) view.findViewById(R.id.listViewCustomerBeverage);
-        listView.setAdapter(adapter);
+        if (adapter != null) {
+            listView.setAdapter(adapter);
+        }
     }
 }

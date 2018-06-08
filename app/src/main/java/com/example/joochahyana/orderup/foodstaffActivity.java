@@ -1,6 +1,8 @@
 package com.example.joochahyana.orderup;
 
 import android.Manifest;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -28,6 +30,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.StringUtils;
+
+
+
+
 
 
 public class foodstaffActivity extends AppCompatActivity {
@@ -42,14 +49,14 @@ public class foodstaffActivity extends AppCompatActivity {
     Uri photoURI, albumURI = null;
     Boolean album = false;
     ImageView caputreImage;
-    byte[] captureImagebyte;
+    byte[] captureImagebyte = null;
     // for save data
-    String foodName;
-    String foodDescrption;
-    double foodPrice;
+    String foodName = null;
+    String foodDescrption = null;
+    double foodPrice = 0.0;
     int foodTypeNameID;
-    String foodTypeName;
-    Integer foodStock;
+    String foodTypeName = null;
+    Integer foodStock = 0;
 
     // input text
     EditText editTextFoodName;
@@ -60,6 +67,31 @@ public class foodstaffActivity extends AppCompatActivity {
 
     //button
     Button enrollButton, takingPicture, loadingPicture;
+
+    public void onFoodTypeSelect(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch(view.getId()) {
+            case R.id.appetizerButton:
+                if (checked)
+                    foodTypeName = "Appetizers";
+                    break;
+            case R.id.dishButton:
+                if (checked)
+                    foodTypeName = "Dishes";
+                    break;
+            case R.id.beverageButton:
+                if (checked)
+                    foodTypeName = "Beverages";
+                    break;
+            case R.id.dessertButton:
+                if (checked)
+                    foodTypeName = "Desserts";
+                    break;
+        }
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +132,8 @@ public class foodstaffActivity extends AppCompatActivity {
             }
         });
 
+
+
         //enroll button
         enrollButton.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -109,36 +143,26 @@ public class foodstaffActivity extends AppCompatActivity {
                 editTextFoodDes = (EditText)findViewById(R.id.editTextFoodDes);
                 editTextPrice = (EditText)findViewById(R.id.editTextFoodPrice);
                 editTextStock = (EditText)findViewById(R.id.editTextFoodStock);
-                captureImagebyte =image_view2byte(caputreImage);
-                foodName = editTextFoodName.getText().toString();
-                foodDescrption = editTextFoodDes.getText().toString();
-                foodPrice = Integer.parseInt(nullpointer_to_0string(editTextPrice.getText().toString()));
-                foodType = (RadioGroup)findViewById(R.id.radioGroup);
-                foodStock = Integer.parseInt(nullpointer_to_0string(editTextStock.getText().toString()));
+                captureImagebyte = image_view2byte(caputreImage);
 
-                switch (foodType.getCheckedRadioButtonId()){
-                    case 0 : foodTypeName = "Appetizer";
-                            break;
-                    case 1 : foodTypeName="Beverage";
-                            break;
-                    case 2 : foodTypeName="Dessert";
-                        break;
-                    case 3 : foodTypeName="Dish";
-                        break;
 
+                if (StringUtils.isEmpty(editTextFoodDes.getText()) || StringUtils.isEmpty(editTextFoodName.getText()) || StringUtils.isEmpty(editTextPrice.getText()) || StringUtils.isEmpty(editTextStock.getText()) || captureImagebyte == null) {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Incomplet informations";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
                 }
+                else
+                {
+                    foodName = editTextFoodName.getText().toString();
+                    foodDescrption = editTextFoodDes.getText().toString();
+                    foodPrice = Double.parseDouble(nullpointer_to_0string(editTextPrice.getText().toString()));
+                    foodType = (RadioGroup)findViewById(R.id.radioGroup);
+                    foodStock = Integer.parseInt(nullpointer_to_0string(editTextStock.getText().toString()));
 
-
-
-
-                if(foodName==null || foodDescrption==null){
-                    // Nothing.
-                }
-
-                else if(foodName.length() != 0 && foodDescrption.length() != 0 && editTextPrice.getText().toString()!= null && foodTypeNameID != -1 && captureImagebyte != null){
-
-
-                    DatabaseItemType dbFoodType = DatabaseItemType.findById(DatabaseItemType.class,(foodTypeNameID+1));
+                    DatabaseItemType dbFoodType = DatabaseItemType.find(DatabaseItemType.class, "name = ?", foodTypeName).get(0);
                     DatabaseItemsImage dbFoodImage = new DatabaseItemsImage(captureImagebyte);
                     dbFoodImage.save();
                     DatabaseItems dbFood = new DatabaseItems(dbFoodType,foodName,foodPrice,foodDescrption,foodStock,dbFoodImage);
@@ -149,12 +173,6 @@ public class foodstaffActivity extends AppCompatActivity {
                     dbMenuItem.save();
 
                     startTapedActivity();
-
-                    //Toast.makeText(getApplicationContext(), radioButton.getText(), Toast.LENGTH_LONG).show();
-
-                }
-                else{
-                    // Nothing.
                 }
 
             }
@@ -261,10 +279,14 @@ public class foodstaffActivity extends AppCompatActivity {
     }
 
 protected byte[] image_view2byte(ImageView imageView){
-        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    bitmap.compress(Bitmap.CompressFormat.PNG,100,baos);
-    return baos.toByteArray();
+        try {
+            Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG,100,baos);
+            return baos.toByteArray();
+        } catch(Exception ex) {
+            return null;
+        }
 
 }
 

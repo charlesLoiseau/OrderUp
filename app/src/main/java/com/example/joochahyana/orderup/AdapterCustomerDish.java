@@ -22,7 +22,7 @@ public class AdapterCustomerDish extends ArrayAdapter<Foods> {
     private String[] name;
     private String[] description;
     private String[] price;
-    private Integer[] photo;
+    private byte[] photo;
 
     public AdapterCustomerDish(@NonNull Context context, ArrayList<Foods> listCustomerDish) {
         super(context, R.layout.custom_customer_menu, listCustomerDish);
