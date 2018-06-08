@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             DatabaseItemType customer = new DatabaseItemType("Customer");
             customer.save();
         }
-
+//ggjgkp??
     }
 
     private void launchActivityCustomer(){
