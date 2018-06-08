@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -64,6 +65,7 @@ public class foodstaffActivity extends AppCompatActivity {
     EditText editTextPrice;
     EditText editTextStock;
     RadioGroup foodType;
+    DatabaseItems item = null;
 
     //button
     Button enrollButton, takingPicture, loadingPicture;
@@ -102,6 +104,29 @@ public class foodstaffActivity extends AppCompatActivity {
         takingPicture = (Button)findViewById(R.id.buttonTakingPicutre);
         loadingPicture =(Button)findViewById(R.id.buttonLoadingPicutre);
         enrollButton = (Button)findViewById(R.id.buttonEnroll);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Long itemID = extras.getLong("id");
+            item = DatabaseItems.findById(DatabaseItems.class, itemID);
+            ((EditText)findViewById(R.id.editTextFoodName)).setText(item.name);
+            ((EditText)findViewById(R.id.editTextFoodDes)).setText(item.description);
+            ((EditText)findViewById(R.id.editTextFoodPrice)).setText(item.price.toString());
+            ((EditText)findViewById(R.id.editTextFoodStock)).setText(item.stock.toString());
+            ((ImageView)findViewById(R.id.imagePicutreTest)).setImageBitmap(BitmapFactory.decodeByteArray(item.itemImage.imageStream, 0, item.itemImage.imageStream.length));
+            foodTypeName = item.itemType.name;
+            switch (item.itemType.name) {
+                case "Appetizers": ((RadioButton)findViewById(R.id.appetizerButton)).setChecked(true);
+                    break;
+                case "Dishes": ((RadioButton)findViewById(R.id.dishButton)).setChecked(true);
+                    break;
+                case "Desserts": ((RadioButton)findViewById(R.id.dessertButton)).setChecked(true);
+                    break;
+                case "Beverages": ((RadioButton)findViewById(R.id.beverageButton)).setChecked(true);
+                    break;
+            }
+
+        }
 
         //taking button
         takingPicture.setOnClickListener(new Button.OnClickListener(){
@@ -146,7 +171,7 @@ public class foodstaffActivity extends AppCompatActivity {
                 captureImagebyte = image_view2byte(caputreImage);
 
 
-                if (StringUtils.isEmpty(editTextFoodDes.getText()) /*|| StringUtils.isEmpty(editTextFoodName.getText()) || StringUtils.isEmpty(editTextPrice.getText()) || StringUtils.isEmpty(editTextStock.getText()) || captureImagebyte == null*/) {
+                if (StringUtils.isEmpty(editTextFoodDes.getText()) || StringUtils.isEmpty(editTextFoodName.getText()) || StringUtils.isEmpty(editTextPrice.getText()) || StringUtils.isEmpty(editTextStock.getText()) || captureImagebyte == null) {
                     Context context = getApplicationContext();
                     CharSequence text = "Incomplet informations";
                     int duration = Toast.LENGTH_SHORT;
@@ -161,16 +186,29 @@ public class foodstaffActivity extends AppCompatActivity {
                     foodPrice = Double.parseDouble(nullpointer_to_0string(editTextPrice.getText().toString()));
                     foodType = (RadioGroup)findViewById(R.id.radioGroup);
                     foodStock = Integer.parseInt(nullpointer_to_0string(editTextStock.getText().toString()));
-
                     DatabaseItemType dbFoodType = DatabaseItemType.find(DatabaseItemType.class, "name = ?", foodTypeName).get(0);
+                    if (item != null)
+                        item.itemImage.delete();
                     DatabaseItemsImage dbFoodImage = new DatabaseItemsImage(captureImagebyte);
                     dbFoodImage.save();
-                    DatabaseItems dbFood = new DatabaseItems(dbFoodType,foodName,foodPrice,foodDescrption,foodStock,dbFoodImage);
-                    dbFood.save();
-                    DatabaseMenu dbMenu = new DatabaseMenu(foodName,foodPrice);                                                 // Should I get more foodName for menu as input?
-                    dbMenu.save();
-                    DatabaseMenuItem dbMenuItem = new DatabaseMenuItem(dbFood,dbMenu);
-                    dbMenuItem.save();
+
+                    if (item == null) {
+                        DatabaseItems dbFood = new DatabaseItems(dbFoodType, foodName, foodPrice, foodDescrption, foodStock, dbFoodImage, true);
+                        dbFood.save();
+                        //DatabaseMenu dbMenu = new DatabaseMenu(foodName, foodPrice);                                                 // Should I get more foodName for menu as input?
+                        //dbMenu.save();
+                        //DatabaseMenuItem dbMenuItem = new DatabaseMenuItem(dbFood, dbMenu);
+                        //dbMenuItem.save();
+                    } else {
+                        item.name = foodName;
+                        item.description = foodDescrption;
+                        item.price = foodPrice;
+                        item.itemType = dbFoodType;
+                        item.stock = foodStock;
+                        //item.itemImage.delete();
+                        item.itemImage = dbFoodImage;
+                        item.save();
+                    }
 
                     startTapedActivity();
                 }
