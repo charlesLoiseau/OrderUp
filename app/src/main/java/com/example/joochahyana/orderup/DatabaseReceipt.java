@@ -8,14 +8,16 @@ public class DatabaseReceipt extends SugarRecord {
     Date    time;
     Integer table;
     Double  price;
+    Boolean paid;
 
     public DatabaseReceipt() {
 
     }
 
-    public DatabaseReceipt(Date time, Integer table, Double price) {
+    public DatabaseReceipt(Date time, Integer table, Double price, Boolean paid) {
         this.time = time;
         this.table = table;
         this.price = price;
+        this.paid = paid;
     }
 }
