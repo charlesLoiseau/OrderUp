@@ -33,14 +33,14 @@ public class AdapterCustomerAppetizer extends ArrayAdapter<Foods> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-        View customView = layoutInflater.inflate(R.layout.custom_customer_appetizer, parent, false);
+        View customView = layoutInflater.inflate(R.layout.custom_customer_menu, parent, false);
 
         Foods foodItem= getItem(position);
 
-        TextView textName = (TextView) customView.findViewById(R.id.textCustomerAppetizerName);
-        TextView textDescription = (TextView) customView.findViewById(R.id.textCustomerAppetizerDescription);
-        TextView textPrice = (TextView) customView.findViewById(R.id.textCustomerAppetizerPrice);
-        ImageView imagePhoto = (ImageView) customView.findViewById(R.id.imageCustomerAppetizer);
+        TextView textName = (TextView) customView.findViewById(R.id.textCustomerMenuName);
+        TextView textDescription = (TextView) customView.findViewById(R.id.textCustomerMenuDescription);
+        TextView textPrice = (TextView) customView.findViewById(R.id.textCustomerMenuPrice);
+        ImageView imagePhoto = (ImageView) customView.findViewById(R.id.imageCustomerMenu);
 
         textName.setText( foodItem.name);
         textDescription.setText( foodItem.description);
