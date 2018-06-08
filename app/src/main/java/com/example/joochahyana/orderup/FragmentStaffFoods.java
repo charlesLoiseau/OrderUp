@@ -48,6 +48,7 @@ public class FragmentStaffFoods extends Fragment{
             if (dbItems.get(i).display == true) {
                 Foods tempFood = new Foods(dbItems.get(i).name,dbItems.get(i).getId(), dbItems.get(i).description, dbItems.get(i).price, dbItems.get(i).itemImage.imageStream,dbItems.get(i).stock);
                 adapter.add(tempFood);
+
             }
 
 

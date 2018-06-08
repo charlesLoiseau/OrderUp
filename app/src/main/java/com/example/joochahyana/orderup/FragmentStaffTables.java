@@ -31,8 +31,12 @@ public class FragmentStaffTables extends Fragment {
         arrayListStaffTables = new ArrayList<Tables>();
         adapter = new AdapterStaffTables(getActivity(), arrayListStaffTables);
 
+
         Tables table = new Tables("Table 1");
         adapter.add(table);
+
+        Tables table2 = new Tables("Table 2");
+        adapter.add(table2);
     }
 
     @Nullable
@@ -40,27 +44,18 @@ public class FragmentStaffTables extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_staff_tables, container, false);
 
-        Spinner spinner = (Spinner)rootView.findViewById(R.id.spinnerStaffTable);
-
-        List<DatabaseItems> dbItems = DatabaseItems.listAll(DatabaseItems.class);
-        List<String> list = new ArrayList<String>();
-
-        list.add("order 1");
-        list.add("order 2");
-        list.add("order 3");
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(dataAdapter);
-
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         ListView listView = (ListView) view.findViewById(R.id.listViewStaffTables);
+//        listView.getLayoutParams().height = 500;
+
+
         if (adapter != null) {
             listView.setAdapter(adapter);
         }
+
     }
 }

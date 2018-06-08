@@ -1,12 +1,12 @@
 package com.example.joochahyana.orderup;
 
-public class Tables {
+public class Tables_Foods {
 
-    public String table;
+    public String name;
 
-    public Tables(String table){
+    public Tables_Foods(String name){
 
-        this.table = table;
+        this.name = name;
 
     }
 
