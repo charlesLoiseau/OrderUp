@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".foodstaffActivity">
 
+    <EditText
+        android:id="@+id/editTextFoodStock"
+        android:layout_width="136dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="72dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonEnroll"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <TextView
         android:id="@+id/textViewFoodDes"
         android:layout_width="wrap_content"
@@ -20,7 +34,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.229" />
+        app:layout_constraintVertical_bias="0.327" />
 
     <TextView
         android:id="@+id/textViewFoodName"
@@ -33,7 +47,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintVertical_bias="0.205" />
 
     <TextView
         android:id="@+id/textViewFoodPrice"
@@ -46,10 +60,10 @@
         android:text="price :"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.363" />
+        app:layout_constraintVertical_bias="0.417" />
 
     <Button
         android:id="@+id/buttonEnroll"
@@ -62,6 +76,7 @@
         android:text="Enroll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -81,7 +96,7 @@
         app:layout_constraintHorizontal_bias="0.771"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.19" />
 
     <EditText
         android:id="@+id/editTextFoodDes"
@@ -98,7 +113,7 @@
         app:layout_constraintHorizontal_bias="0.771"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintVertical_bias="0.296" />
 
     <EditText
         android:id="@+id/editTextFoodPrice"
@@ -112,10 +127,9 @@
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.441"
         app:layout_constraintStart_toEndOf="@+id/textViewFoodPrice"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.613" />
+        app:layout_constraintVertical_bias="0.71" />
 
     <TextView
         android:id="@+id/typeView"
@@ -128,54 +142,53 @@
         android:text="Type : "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintHorizontal_bias="0.097"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.47" />
+        app:layout_constraintVertical_bias="0.535" />
 
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="289dp"
+        android:layout_width="191dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintHorizontal_bias="0.637"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.605">
+        app:layout_constraintVertical_bias="0.668">
 
         <RadioButton
             android:id="@+id/apptizerButton"
-            android:layout_width="wrap_content"
+            android:layout_width="393dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
 
             android:layout_weight="1"
             android:text="Appitizer  " />
 
         <RadioButton
             android:id="@+id/dishButton"
-            android:layout_width="wrap_content"
+            android:layout_width="393dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-
             android:layout_weight="1"
             android:text="Dish" />
 
         <RadioButton
             android:id="@+id/beveragerButton"
-            android:layout_width="wrap_content"
+            android:layout_width="393dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
 
             android:layout_weight="1"
             android:text="Beverager" />
 
         <RadioButton
             android:id="@+id/dessertButton"
-            android:layout_width="wrap_content"
+            android:layout_width="393dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
 
@@ -183,5 +196,76 @@
             android:text="Dessert" />
 
     </RadioGroup>
+
+    <Button
+        android:id="@+id/buttonTakingPicutre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Taking"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046" />
+
+    <Button
+        android:id="@+id/buttonLoadingPicutre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginTop="29dp"
+        android:text="Loading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="45dp"
+        android:layout_marginEnd="49dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="42dp"
+        android:text="Picture :"
+        app:layout_constraintBottom_toTopOf="@+id/textViewFoodName"
+        app:layout_constraintEnd_toStartOf="@+id/buttonTakingPicutre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imagePicutreTest"
+        android:layout_width="41dp"
+        android:layout_height="182dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="29dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextFoodName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonLoadingPicutre"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/stockView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="86dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="stock:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editTextFoodStock"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>

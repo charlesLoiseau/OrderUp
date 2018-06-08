@@ -11,18 +11,18 @@ public class Foods {
 
     public String name;
     public String description;
-    public String price;
-    public Integer photo;
-    public Integer type;
+    public Double price;
+    public byte[] photo;
+
     // 0 : Appetizer, 1 : Beverage, 2 : Dessert, 3 : Dish
 
-    public Foods(String name, String description, String price, Integer photo,Integer type){
+    public Foods(String name, String description, Double price, byte[] photo){
 
         this.name = name;
         this.description = description;
         this.price = price;
         this.photo = photo;
-        this.type = type;
+
     }
 
 }

@@ -28,16 +28,6 @@ public class FragmentCustomerAppetizer extends Fragment{
         adapter = new AdapterCustomerAppetizer(getActivity(), arrayListCustomerAppetizer);
 
 
-        Foods food1 = new Foods("Food Name 1", "Description of food 1", "$10.00", R.drawable.pic01,Foods.Appetizer);
-        adapter.add(food1);
-        Foods food2 = new Foods("Food Name 2", "Description of food 2", "$20.00", R.drawable.pic02,Foods.Appetizer);
-        adapter.add(food2);
-        Foods food3 = new Foods("Food Name 3", "Description of food 3", "$30.00", R.drawable.pic03,Foods.Appetizer);
-        adapter.add(food3);
-        Foods food4 = new Foods("Food Name 4", "Description of food 4", "$40.00", R.drawable.pic04,Foods.Appetizer);
-        adapter.add(food4);
-        Foods food5 = new Foods("Food Name 5", "Description of food 5", "$50.00", -1,Foods.Appetizer);
-        adapter.add(food5);
 
     }
 

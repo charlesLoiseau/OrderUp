@@ -2,6 +2,9 @@ package com.example.joochahyana.orderup;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -21,7 +24,7 @@ public class AdapterStaffFoods extends ArrayAdapter<Foods> {
     private String[] name;
     private String[] description;
     private String[] price;
-    private Integer[] photo;
+    private byte[] photo;
 
     public AdapterStaffFoods(@NonNull Context context, ArrayList<Foods> listStaffFoods) {
         super(context, R.layout.custom_customer_appetizer, listStaffFoods);
@@ -44,9 +47,19 @@ public class AdapterStaffFoods extends ArrayAdapter<Foods> {
 
         textName.setText(foods.name);
         textDescription.setText(foods.description);
-        textPrice.setText(foods.price);
-        imagePhoto.setImageResource(foods.photo);
+        textPrice.setText(foods.price.toString());
+        setImageViewWithByteArray(imagePhoto,foods.photo);
 
         return staffView;
     }
+
+    public void setImageViewWithByteArray(ImageView view, byte[] data){
+        Bitmap bitmap  = BitmapFactory.decodeByteArray(data,0,data.length);
+        view.setImageBitmap(bitmap);
+    }
+
+
+
 }
+
+

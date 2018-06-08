@@ -4,7 +4,6 @@ import com.orm.SugarRecord;
 
 public class DatabaseItemComment extends SugarRecord {
     String          comment;
-
     // Relationship
     DatabaseItems   item;
 

@@ -56,13 +56,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if (DatabaseItemType.find(DatabaseItemType.class, "name = ?","Beverages").isEmpty()) {
-            DatabaseItemType beverages = new DatabaseItemType("Beverages");
-            beverages.save();
-        }
+
         if (DatabaseItemType.find(DatabaseItemType.class, "name = ?","Appetizers").isEmpty()) {
             DatabaseItemType appetizers = new DatabaseItemType("Appetizers");
             appetizers.save();
+        }
+        if (DatabaseItemType.find(DatabaseItemType.class, "name = ?","Beverages").isEmpty()) {
+            DatabaseItemType beverages = new DatabaseItemType("Beverages");
+            beverages.save();
         }
         if (DatabaseItemType.find(DatabaseItemType.class, "name = ?","Dishes").isEmpty()) {
             DatabaseItemType dishes = new DatabaseItemType("Dishes");
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             DatabaseItemType desserts = new DatabaseItemType("Desserts");
             desserts.save();
         }
+
     }
 
     private void launchActivityCustomer(){
