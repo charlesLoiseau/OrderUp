@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -55,17 +58,17 @@ public class AdapterCustomerAppetizer extends ArrayAdapter<Foods> {
         //Push the ReceiptItem
 
         DatabaseItems item = DatabaseItems.findById(DatabaseItems.class, foodItem.id);
-        DatabaseReceipt currentReceipt = new DatabaseReceipt();
+        DatabaseReceipt currentReceipt = null;
 
 
-        if (DatabaseReceipt.find(DatabaseReceipt.class, "paid = ? table_nb = ?", "false", "27").isEmpty()) {
+        if (DatabaseReceipt.find(DatabaseReceipt.class, "paid = ? and tnumber = ?", "false", "27").isEmpty()) {
 
 
-            currentReceipt = new DatabaseReceipt((Date) Calendar.getInstance().getTime(), 27, 0.0, Boolean.FALSE);
+            currentReceipt = new DatabaseReceipt(new java.sql.Date(Calendar.getInstance().getTimeInMillis()), 27, 0.0, Boolean.FALSE);
             currentReceipt.save();
 
         } else {
-            currentReceipt =  DatabaseReceipt.find(DatabaseReceipt.class, "paid = ? and table_nb = ?", "false", "27").get(0);
+            currentReceipt =  DatabaseReceipt.find(DatabaseReceipt.class, "paid = ? and tnumber = ?", "false", "27").get(0);
         }
 
         DatabaseReceiptItem receiptItem = new DatabaseReceiptItem(currentReceipt, null, item);
