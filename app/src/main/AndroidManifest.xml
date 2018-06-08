@@ -35,7 +35,7 @@
             android:name=".TabbedActivityStaff"
             android:label="@string/title_activity_tabbed_staff"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".FoodAddStaff" />
+
         <activity android:name=".foodstaffActivity"></activity>
     </application>
 
