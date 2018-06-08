@@ -30,6 +30,7 @@ public class AdapterCustomerAppetizer extends ArrayAdapter<Foods> {
     private String[] description;
     private String[] price;
     private byte[] photo;
+    private Foods foodItem;
 
     public AdapterCustomerAppetizer(@NonNull Context context, ArrayList<Foods> listCustomerAppetizers) {
         super(context, R.layout.custom_customer_menu, listCustomerAppetizers);
@@ -42,7 +43,7 @@ public class AdapterCustomerAppetizer extends ArrayAdapter<Foods> {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         View customView = layoutInflater.inflate(R.layout.custom_customer_menu, parent, false);
 
-        Foods foodItem= getItem(position);
+        foodItem= getItem(position);
 
         TextView textName = (TextView) customView.findViewById(R.id.textCustomerMenuName);
         TextView textDescription = (TextView) customView.findViewById(R.id.textCustomerMenuDescription);
@@ -57,29 +58,34 @@ public class AdapterCustomerAppetizer extends ArrayAdapter<Foods> {
         // working place
         //Push the ReceiptItem
 
-        DatabaseItems item = DatabaseItems.findById(DatabaseItems.class, foodItem.id);
-        DatabaseReceipt currentReceipt = null;
 
 
-        if (DatabaseReceipt.find(DatabaseReceipt.class, "paid = ? and tnumber = ?", "false", "27").isEmpty()) {
 
 
-            currentReceipt = new DatabaseReceipt(new java.sql.Date(Calendar.getInstance().getTimeInMillis()), 27, 0.0, Boolean.FALSE);
-            currentReceipt.save();
 
-        } else {
-            currentReceipt =  DatabaseReceipt.find(DatabaseReceipt.class, "paid = ? and tnumber = ?", "false", "27").get(0);
-        }
 
-        DatabaseReceiptItem receiptItem = new DatabaseReceiptItem(currentReceipt, null, item);
-        currentReceipt.price += item.price;
-        currentReceipt.save();
-        receiptItem.save();
+        customView.findViewById(R.id.orderButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReceipt currentReceipt = null;
+                DatabaseItems item = DatabaseItems.findById(DatabaseItems.class, foodItem.id);
+                if (DatabaseReceipt.find(DatabaseReceipt.class, "paid = ? and tnumber = ?", "false", "27").isEmpty()) {
+
+                    currentReceipt = new DatabaseReceipt(new java.sql.Date(Calendar.getInstance().getTimeInMillis()), 27, 0.0, Boolean.FALSE);
+                    currentReceipt.save();
+
+                } else {
+                    currentReceipt =  DatabaseReceipt.find(DatabaseReceipt.class, "paid = ? and tnumber = ?", "false", "27").get(0);
+                }
+                DatabaseReceiptItem receiptItem = new DatabaseReceiptItem(currentReceipt, null, item);
+                currentReceipt.price += item.price;
+                currentReceipt.save();
+                receiptItem.save();
+            }
+        });
 
 
         //
-
-
 
         return customView;
     }
