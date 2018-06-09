@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,6 @@ public class AdapterStaffTables extends ArrayAdapter<Tables> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         View customView = layoutInflater.inflate(R.layout.custom_staff_table, parent, false);
-
         Tables tempTable = getItem(position);
 
         TextView textName = (TextView) customView.findViewById(R.id.textStaffTableNumber);
@@ -74,9 +75,11 @@ public class AdapterStaffTables extends ArrayAdapter<Tables> {
         adapter2.add(test5);
 
         final ListView listView2 = (ListView) customView.findViewById(R.id.listViewStaffTableFoods);
+
         ViewGroup.LayoutParams params = listView2.getLayoutParams();
         listView2.setVisibility(View.GONE);
-        params.height = 80 * 5;
+        params.height = getParamsHeight(parent,5,40);
+        Toast.makeText( this.context,"the height is " + params.height,Toast.LENGTH_LONG).show();
         listView2.setLayoutParams(params);
 
         if(adapter2 != null){
@@ -98,5 +101,19 @@ public class AdapterStaffTables extends ArrayAdapter<Tables> {
         });
 
         return customView;
+    }
+    protected int getParamsHeight(@NonNull ViewGroup  parent,int numberElem,int freeup ){
+        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+        View customView = layoutInflater.inflate(R.layout.custom_staff_table, parent, false);
+        View inListtView = layoutInflater.inflate(R.layout.custom_staff_table_food,parent,false);
+        final ListView listView2 = (ListView) customView.findViewById(R.id.listViewStaffTableFoods);
+        final View listEle = inListtView.findViewById(R.id.table_food_Layout);
+        final View TableInfo = customView.findViewById(R.id.Layout_table);
+        ViewGroup.LayoutParams params = listView2.getLayoutParams();
+        listView2.setVisibility(View.GONE);
+        listEle.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        TableInfo.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        return listEle.getMeasuredHeight()* numberElem + TableInfo.getMeasuredHeight()+freeup;//
+
     }
 }

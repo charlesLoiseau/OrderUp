@@ -3,11 +3,11 @@
     package="com.example.joochahyana.orderup">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.hardware.camera2"/>
-    <uses-permission android:name="andorid.hardware.camera"/>
+    <uses-permission android:name="android.hardware.camera2" />
+    <uses-permission android:name="andorid.hardware.camera" />
 
     <uses-feature
         android:name="android.hardware.camera.any"
@@ -17,18 +17,25 @@
         android:required="false" />
 
     <application
+        android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name="com.orm.SugarApp">
-
-        <meta-data android:name="DATABASE" android:value="DatabaseOrderUp.db" />
-        <meta-data android:name="VERSION" android:value="7" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.example" />
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="DATABASE"
+            android:value="DatabaseOrderUp.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="7" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.example" />
 
         <activity
             android:name=".SplashActivity"
@@ -49,17 +56,16 @@
             android:name=".TabbedActivityStaff"
             android:label="@string/title_activity_tabbed_staff"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".foodstaffActivity"></activity>
+        <activity android:name=".foodstaffActivity" />
 
         <provider
-            android:authorities="com.shuvic.alumni.cameraalbum"
             android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.shuvic.alumni.cameraalbum"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
         <provider
             android:name=".GenericFileProvider"
@@ -68,9 +74,10 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
 
+        <activity android:name=".OrderViewActivity"></activity>
     </application>
 
 </manifest>

@@ -237,8 +237,8 @@ public class foodstaffActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode,@NonNull String[] permision,@NonNull int[] grantresult){
         if (requestCode==0)
             if (grantresult[0]==0){
-                Toast.makeText(this,"camara permision ",Toast.LENGTH_LONG).show();
 
+                Toast.makeText(this,"camara permision ",Toast.LENGTH_LONG).show();
             }
             else {
                 Toast.makeText(this,"camara permision denyed ",Toast.LENGTH_LONG).show();

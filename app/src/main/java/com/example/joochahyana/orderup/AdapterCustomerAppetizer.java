@@ -59,11 +59,6 @@ public class AdapterCustomerAppetizer extends ArrayAdapter<Foods> {
         //Push the ReceiptItem
 
 
-
-
-
-
-
         customView.findViewById(R.id.orderButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

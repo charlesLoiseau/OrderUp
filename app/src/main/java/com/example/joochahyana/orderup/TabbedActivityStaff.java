@@ -1,8 +1,10 @@
 package com.example.joochahyana.orderup;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -37,6 +39,18 @@ public class TabbedActivityStaff extends AppCompatActivity {
     private ViewPager mViewPager;
 
     @Override
+    public void onBackPressed() {
+
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+            return;
+        }
+
+
+
+
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed_staff);

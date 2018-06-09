@@ -1,5 +1,6 @@
 package com.example.joochahyana.orderup;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -38,6 +39,14 @@ public class TabbedActivityCustomer extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    @Override
+    public void onBackPressed() {
+
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        return;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

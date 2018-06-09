@@ -9,10 +9,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.orm.SchemaGenerator;
+import com.orm.SugarContext;
+import com.orm.SugarDb;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    Button buttonCustomer, buttonStaff;
+    /*
+      if you want to reset db , just click resetDbbutton (it's invisible and nonclickable )
+
+         to find the button
+
+         start app with resetDbMode = true
+
+         after reset db
+
+         plz,plz set ResetDbMode false
+     */
+    private static final boolean ResetDbMode = false;// for reset Db by using app
+
+
+    Button buttonCustomer, buttonStaff, buttonResetDb;
     boolean doubleBackToExitPressedOnce = false;
 
     @Override
@@ -41,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         buttonCustomer = (Button) findViewById(R.id.buttonLoginCustomer);
         buttonStaff = (Button) findViewById(R.id.buttonLoginStaff);
-
+        buttonResetDb = (Button) findViewById(R.id.buttonResetDb);
         buttonCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +72,28 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 launchActivityStaff();
             }
+
         });
+
+        buttonResetDb.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                deleteAllDatainMySugarOrm();
+            }
+
+        });
+
+        if (ResetDbMode){
+            buttonResetDb.setClickable(true);
+            buttonResetDb.setAlpha(1);
+
+        }
+        else{
+            buttonResetDb.setClickable(false);
+            buttonResetDb.setAlpha(0);
+
+        }
 
 
         if (DatabaseItemType.find(DatabaseItemType.class, "name = ?","Appetizers").isEmpty()) {
@@ -97,5 +136,14 @@ public class MainActivity extends AppCompatActivity {
     private void launchActivityStaff(){
         Intent intent = new Intent(this, TabbedActivityStaff.class);
         startActivity(intent);
+    }
+
+    private void deleteAllDatainMySugarOrm(){
+        SugarContext.terminate();
+        SchemaGenerator schemaGenerator = new SchemaGenerator(getApplicationContext());
+        schemaGenerator.deleteTables(new SugarDb(getApplicationContext()).getDB());
+        SugarContext.init(getApplicationContext());
+        schemaGenerator.createDatabase(new SugarDb(getApplicationContext()).getDB());
+
     }
 }
