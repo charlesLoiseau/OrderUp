@@ -71,8 +71,9 @@ public class AdapterCustomerDish extends ArrayAdapter<Foods> {
         // In Front : move on order tap
         // In back : order state -> before ordering -> ordering
 
-
-        DatabaseOrderState dbOrderState = DatabaseOrderState.find(DatabaseOrderState.class,"name = ? ", "Ordering").get(0);
+        DatabaseOrderState dbOrderState_0 = DatabaseOrderState.find(DatabaseOrderState.class,"name = ? ", "Before ordering").get(0);
+        DatabaseOrderState dbOrderState_1 = DatabaseOrderState.find(DatabaseOrderState.class,"name = ? ", "Ordering").get(0);
+        DatabaseOrderState dbOrderState_2 = DatabaseOrderState.find(DatabaseOrderState.class,"name = ? ", "After ordering").get(0);
         // table =1 is just test example
 
         Long finder = item.getId();
@@ -80,6 +81,12 @@ public class AdapterCustomerDish extends ArrayAdapter<Foods> {
         List<DatabaseOrder> dbOrders = DatabaseItems.listAll(DatabaseOrder.class);
         for (int i = 0; i < dbOrders.size(); i++) {
             if (dbOrders.get(i).item.getId()==finder) {
+                if (dbOrders.get(i).state.name.equals(dbOrderState_0.name) ) {
+                    dbOrders.get(i).state = dbOrderState_1;
+                    dbOrders.get(i).fnumber = 0;
+                }
+                else if(dbOrders.get(i).state.name.equals(dbOrderState_2.name))
+                    continue;
                 dbOrders.get(i).fnumber++;
                 dbOrders.get(i).save();
                 flag = true;
@@ -88,9 +95,8 @@ public class AdapterCustomerDish extends ArrayAdapter<Foods> {
 
         if (flag!=true) {
 
-            DatabaseOrder dbOrder = new DatabaseOrder(0, 1, item, dbOrderState, false, new java.sql.Date(0));
+            DatabaseOrder dbOrder = new DatabaseOrder(0, 1, item, dbOrderState_1, false, new java.sql.Date(0));
             dbOrder.save();
-
         }
 
 
