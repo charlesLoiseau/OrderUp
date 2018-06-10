@@ -73,31 +73,41 @@ public class AdapterCustomerBeverage extends ArrayAdapter<Foods> {
         // In Front : move on order tap
         // In back : order state -> before ordering -> ordering
 
-        DatabaseOrderState dbOrderState_0 = DatabaseOrderState.find(DatabaseOrderState.class,"name = ? ", "Before ordering").get(0);
-        DatabaseOrderState dbOrderState_1 = DatabaseOrderState.find(DatabaseOrderState.class,"name = ? ", "Ordering").get(0);
-        DatabaseOrderState dbOrderState_2 = DatabaseOrderState.find(DatabaseOrderState.class,"name = ? ", "After ordering").get(0);
+        DatabaseOrderState dbOrderState_Before_ordering = DatabaseOrderState.find(DatabaseOrderState.class,"name = ? ", "Before ordering").get(0);
+        DatabaseOrderState dbOrderState_Ordering = DatabaseOrderState.find(DatabaseOrderState.class,"name = ? ", "Ordering").get(0);
+        DatabaseOrderState dbOrderState_After_ordering = DatabaseOrderState.find(DatabaseOrderState.class,"name = ? ", "After ordering").get(0);
         // table =1 is just test example
 
         Long finder = item.getId();
         boolean flag = false;
-        List<DatabaseOrder> dbOrders = DatabaseItems.listAll(DatabaseOrder.class);
-        for (int i = 0; i < dbOrders.size(); i++) {
-            if (dbOrders.get(i).item.getId()==finder) {
-                if (dbOrders.get(i).state.name.equals(dbOrderState_0.name) ) {
-                    dbOrders.get(i).state = dbOrderState_1;
-                    dbOrders.get(i).fnumber = 0;
-                }
-                else if(dbOrders.get(i).state.name.equals(dbOrderState_2.name))
-                    continue;
-                dbOrders.get(i).fnumber++;
-                dbOrders.get(i).save();
+        List<DatabaseOrder> ListdbOrders = DatabaseItems.listAll(DatabaseOrder.class);
+        for (int i = 0; i < ListdbOrders.size(); i++) {
+            if (ListdbOrders.get(i).item.getId()==finder) {
                 flag = true;
+                if (ListdbOrders.get(i).state.name.equals(dbOrderState_Before_ordering.name)) {
+                    ListdbOrders.get(i).state = dbOrderState_Ordering;
+                    ListdbOrders.get(i).fnumber = 0;
+                    ListdbOrders.get(i).save();
+                } else if (ListdbOrders.get(i).state.name.equals(dbOrderState_After_ordering.name) && false == ListdbOrders.get(i).done) {
+                    DatabaseOrder dbOrder = new DatabaseOrder(0, 1, item, dbOrderState_Ordering, false, new java.sql.Date(0));
+                    dbOrder.save();
+                    ListdbOrders.get(i).save();
+                } else if (ListdbOrders.get(i).state.name.equals(dbOrderState_After_ordering.name) && ListdbOrders.get(i).done) {
+                    ListdbOrders.get(i).state = dbOrderState_Ordering;
+                    ListdbOrders.get(i).fnumber = 0;
+                    ListdbOrders.get(i).save();
+                } else if (ListdbOrders.get(i).state.name.equals(dbOrderState_Ordering.name) && false == ListdbOrders.get(i).done) {
+                    ListdbOrders.get(i).fnumber++;
+                    ListdbOrders.get(i).save();
+                } else {
+                    DatabaseOrder dbOrder = new DatabaseOrder(0, 1, item, dbOrderState_Ordering, false, new java.sql.Date(0));
+                    dbOrder.save();
+                }
             }
-        }
+            }
+        if (flag == false ) {
 
-        if (flag!=true) {
-
-            DatabaseOrder dbOrder = new DatabaseOrder(0, 1, item, dbOrderState_1, false, new java.sql.Date(0));
+            DatabaseOrder dbOrder = new DatabaseOrder(0, 1, item, dbOrderState_Ordering, false, new java.sql.Date(0));
             dbOrder.save();
         }
 

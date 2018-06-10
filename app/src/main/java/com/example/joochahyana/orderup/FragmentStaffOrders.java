@@ -34,6 +34,7 @@ public class FragmentStaffOrders extends Fragment {
         makeAdapter();
     }
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
