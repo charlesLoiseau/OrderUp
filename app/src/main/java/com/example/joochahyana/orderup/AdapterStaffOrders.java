@@ -66,9 +66,10 @@ public class AdapterStaffOrders extends ArrayAdapter<Orders> {
            @Override
            public void onClick(View v) {
                Intent intent = new Intent(context, TabbedActivityStaff.class);
-               DatabaseOrderState dbOst=  DatabaseOrderState.find(DatabaseOrderState.class, "name = ?","After ordering").get(0);
+               DatabaseOrderState dbOst=  DatabaseOrderState.find(DatabaseOrderState.class, "name = ?","Before ordering").get(0);
                DatabaseOrder dbOrder =SugarRecord.findById(DatabaseOrder.class,orders.id);
                dbOrder.state = dbOst;
+               dbOrder.done = true;
                dbOrder.save();
                v.getContext().startActivity(intent);
 
