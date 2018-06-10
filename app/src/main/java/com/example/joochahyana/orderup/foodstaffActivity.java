@@ -186,7 +186,10 @@ public class foodstaffActivity extends AppCompatActivity {
                     foodPrice = Double.parseDouble(nullpointer_to_0string(editTextPrice.getText().toString()));
                     foodType = (RadioGroup)findViewById(R.id.radioGroup);
                     foodStock = Integer.parseInt(nullpointer_to_0string(editTextStock.getText().toString()));
-                    DatabaseItemType dbFoodType = DatabaseItemType.find(DatabaseItemType.class, "name = ?", foodTypeName).get(0);
+
+                    DatabaseItemType dbFoodType = DatabaseItemType.find(DatabaseItemType.class, "name = ?", foodTypeName).get(0); //
+
+
                     if (item != null)
                         item.itemImage.delete();
                     DatabaseItemsImage dbFoodImage = new DatabaseItemsImage(captureImagebyte);
@@ -195,10 +198,6 @@ public class foodstaffActivity extends AppCompatActivity {
                     if (item == null) {
                         DatabaseItems dbFood = new DatabaseItems(dbFoodType, foodName, foodPrice, foodDescrption, foodStock, dbFoodImage, true);
                         dbFood.save();
-                        //DatabaseMenu dbMenu = new DatabaseMenu(foodName, foodPrice);                                                 // Should I get more foodName for menu as input?
-                        //dbMenu.save();
-                        //DatabaseMenuItem dbMenuItem = new DatabaseMenuItem(dbFood, dbMenu);
-                        //dbMenuItem.save();
                     } else {
                         item.name = foodName;
                         item.description = foodDescrption;
@@ -227,7 +226,16 @@ public class foodstaffActivity extends AppCompatActivity {
             return a;
     }
     public  void startTapedActivity(){
-        // erase all plz
+
+
+        album = false;
+        captureImagebyte = null;
+        foodName = null;
+        foodDescrption = null;
+        foodPrice = 0.0;
+        foodTypeName = null;
+        foodStock = 0;
+        item = null;
 
         Intent intent = new Intent(this, TabbedActivityStaff.class);
         startActivity(intent);
@@ -326,5 +334,7 @@ protected byte[] image_view2byte(ImageView imageView){
         }
 
 }
+
+
 
 }

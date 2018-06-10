@@ -19,12 +19,13 @@ public class FragmentCustomerAppetizer extends Fragment{
 
      AdapterCustomerAppetizer adapter;
     ArrayList<Foods> arrayListCustomerAppetizer;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        makeAdapter();
+    }
 
-
+    private void makeAdapter() {
         arrayListCustomerAppetizer = new ArrayList<Foods>();
         adapter = new AdapterCustomerAppetizer(getActivity(), arrayListCustomerAppetizer);
         List<DatabaseItems> dbItems = DatabaseItems.listAll(DatabaseItems.class);
@@ -34,15 +35,12 @@ public class FragmentCustomerAppetizer extends Fragment{
                 adapter.add(tempFood);
             }
         }
-
-
-
-
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        makeAdapter();
         View rootView = inflater.inflate(R.layout.fragment_customer_appetizer, container, false);
         return rootView;
     }

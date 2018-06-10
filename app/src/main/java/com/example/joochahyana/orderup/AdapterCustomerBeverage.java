@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by Joanna Chahyana on 9/5/2018.
@@ -23,6 +25,7 @@ public class AdapterCustomerBeverage extends ArrayAdapter<Foods> {
     private String[] description;
     private String[] price;
     private Integer[] photo;
+
 
     public AdapterCustomerBeverage(@NonNull Context context, ArrayList<Foods> ListCustomerBeverages) {
         super(context, R.layout.custom_customer_menu, ListCustomerBeverages);
@@ -35,7 +38,7 @@ public class AdapterCustomerBeverage extends ArrayAdapter<Foods> {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         View customView = layoutInflater.inflate(R.layout.custom_customer_menu, parent, false);
 
-        Foods foodItem = getItem(position);
+        final Foods foodItem = getItem(position);
 
         TextView textName = (TextView) customView.findViewById(R.id.textCustomerMenuName);
         TextView textDescription = (TextView) customView.findViewById(R.id.textCustomerMenuDescription);
@@ -46,7 +49,18 @@ public class AdapterCustomerBeverage extends ArrayAdapter<Foods> {
         textDescription.setText(foodItem.description);
         textPrice.setText( foodItem.price.toString());
         setImageViewWithByteArray(imagePhoto,foodItem.photo);
+        customView.findViewById(R.id.orderButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReceipt currentReceipt = null;
+                DatabaseItems item = DatabaseItems.findById(DatabaseItems.class, foodItem.id);
 
+                dbOrderSave(item);
+
+
+
+            }
+        });
 
         return customView;
     }
@@ -55,6 +69,33 @@ public class AdapterCustomerBeverage extends ArrayAdapter<Foods> {
         Bitmap bitmap  = BitmapFactory.decodeByteArray(data,0,data.length);
         view.setImageBitmap(bitmap);
     }
+    private void dbOrderSave(DatabaseItems item){
+        // In Front : move on order tap
+        // In back : order state -> before ordering -> ordering
 
+
+        DatabaseOrderState dbOrderState = DatabaseOrderState.find(DatabaseOrderState.class,"name = ? ", "Ordering").get(0);
+        // table =1 is just test example
+
+        Long finder = item.getId();
+        boolean flag = false;
+        List<DatabaseOrder> dbOrders = DatabaseItems.listAll(DatabaseOrder.class);
+        for (int i = 0; i < dbOrders.size(); i++) {
+            if (dbOrders.get(i).item.getId()==finder) {
+                dbOrders.get(i).fnumber ++;
+                dbOrders.get(i).save();
+                flag = true;
+            }
+        }
+
+      if (flag!=true) {
+
+          DatabaseOrder dbOrder = new DatabaseOrder(0, 1, item, dbOrderState, false, new java.sql.Date(0));
+          dbOrder.save();
+      }
+
+
+
+    }
 
 }

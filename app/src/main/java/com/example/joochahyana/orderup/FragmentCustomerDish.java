@@ -24,6 +24,10 @@ public class FragmentCustomerDish extends Fragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        makeAdapter();
+    }
+
+    private void makeAdapter() {
 
         arrayListCustomerDish = new ArrayList<Foods>();
         adapter = new AdapterCustomerDish(getActivity(), arrayListCustomerDish);
@@ -41,6 +45,7 @@ public class FragmentCustomerDish extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        makeAdapter();
         View rootView = inflater.inflate(R.layout.fragment_customer_dish, container, false);
         return rootView;
     }

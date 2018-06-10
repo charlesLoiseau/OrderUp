@@ -9,7 +9,6 @@ public class DatabaseReceipt extends SugarRecord {
     Integer tnumber;
     Double  price;
     Boolean paid;
-
     public DatabaseReceipt() {
 
     }

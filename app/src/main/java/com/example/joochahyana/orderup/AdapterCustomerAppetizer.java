@@ -9,14 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.orm.query.Condition;
-import com.orm.query.Select;
-
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -30,7 +25,7 @@ public class AdapterCustomerAppetizer extends ArrayAdapter<Foods> {
     private String[] description;
     private String[] price;
     private byte[] photo;
-    private Foods foodItem;
+
 
     public AdapterCustomerAppetizer(@NonNull Context context, ArrayList<Foods> listCustomerAppetizers) {
         super(context, R.layout.custom_customer_menu, listCustomerAppetizers);
@@ -43,7 +38,7 @@ public class AdapterCustomerAppetizer extends ArrayAdapter<Foods> {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         View customView = layoutInflater.inflate(R.layout.custom_customer_menu, parent, false);
 
-        foodItem= getItem(position);
+        final Foods foodItem= getItem(position);
 
         TextView textName = (TextView) customView.findViewById(R.id.textCustomerMenuName);
         TextView textDescription = (TextView) customView.findViewById(R.id.textCustomerMenuDescription);
@@ -62,20 +57,11 @@ public class AdapterCustomerAppetizer extends ArrayAdapter<Foods> {
         customView.findViewById(R.id.orderButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReceipt currentReceipt = null;
                 DatabaseItems item = DatabaseItems.findById(DatabaseItems.class, foodItem.id);
-                if (DatabaseReceipt.find(DatabaseReceipt.class, "paid = ? and tnumber = ?", "false", "27").isEmpty()) {
+               dbOrderSave(item);
 
-                    currentReceipt = new DatabaseReceipt(new java.sql.Date(Calendar.getInstance().getTimeInMillis()), 27, 0.0, Boolean.FALSE);
-                    currentReceipt.save();
 
-                } else {
-                    currentReceipt =  DatabaseReceipt.find(DatabaseReceipt.class, "paid = ? and tnumber = ?", "false", "27").get(0);
-                }
-                DatabaseReceiptItem receiptItem = new DatabaseReceiptItem(currentReceipt, null, item);
-                currentReceipt.price += item.price;
-                currentReceipt.save();
-                receiptItem.save();
+
             }
         });
 
@@ -89,6 +75,40 @@ public class AdapterCustomerAppetizer extends ArrayAdapter<Foods> {
         Bitmap bitmap  = BitmapFactory.decodeByteArray(data,0,data.length);
         view.setImageBitmap(bitmap);
     }
+    private void dbOrderSave(DatabaseItems item){
+        // In Front : move on order tap
+        // In back : order state -> before ordering -> ordering
 
+        DatabaseOrderState dbOrderState_0 = DatabaseOrderState.find(DatabaseOrderState.class,"name = ? ", "Before ordering").get(0);
+        DatabaseOrderState dbOrderState_1 = DatabaseOrderState.find(DatabaseOrderState.class,"name = ? ", "Ordering").get(0);
+        DatabaseOrderState dbOrderState_2 = DatabaseOrderState.find(DatabaseOrderState.class,"name = ? ", "After ordering").get(0);
+        // table =1 is just test example
+
+        Long finder = item.getId();
+        boolean flag = false;
+        List<DatabaseOrder> dbOrders = DatabaseItems.listAll(DatabaseOrder.class);
+        for (int i = 0; i < dbOrders.size(); i++) {
+            if (dbOrders.get(i).item.getId()==finder) {
+                if (dbOrders.get(i).state.name.equals(dbOrderState_0.name) ) {
+                    dbOrders.get(i).state = dbOrderState_1;
+                    dbOrders.get(i).fnumber = 0;
+                }
+                else if(dbOrders.get(i).state.name.equals(dbOrderState_2.name))
+                   continue;
+                dbOrders.get(i).fnumber++;
+                dbOrders.get(i).save();
+                flag = true;
+            }
+        }
+
+        if (flag!=true) {
+
+            DatabaseOrder dbOrder = new DatabaseOrder(0, 1, item, dbOrderState_1, false, new java.sql.Date(0));
+            dbOrder.save();
+        }
+
+
+
+    }
 
 }

@@ -20,28 +20,20 @@ import java.util.List;
  */
 
 public class FragmentStaffTables extends Fragment {
-
+    private final static boolean Testmode =true;
     AdapterStaffTables adapter;
     ArrayList<Tables> arrayListStaffTables;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        arrayListStaffTables = new ArrayList<Tables>();
-        adapter = new AdapterStaffTables(getActivity(), arrayListStaffTables);
-
-
-        Tables table = new Tables("Table 1");
-        adapter.add(table);
-
-        Tables table2 = new Tables("Table 2");
-        adapter.add(table2);
+        makeAdapter();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        makeAdapter();
         View rootView = inflater.inflate(R.layout.fragment_staff_tables, container, false);
 
         return rootView;
@@ -56,6 +48,26 @@ public class FragmentStaffTables extends Fragment {
         if (adapter != null) {
             listView.setAdapter(adapter);
         }
+
+    }
+
+    protected void makeAdapter(){
+        if(Testmode){
+
+
+            arrayListStaffTables = new ArrayList<Tables>();
+            adapter = new AdapterStaffTables(getActivity(), arrayListStaffTables);
+
+
+            Tables table = new Tables("Table 1");
+            adapter.add(table);
+
+            Tables table2 = new Tables("Table 2");
+            adapter.add(table2);
+        }
+
+
+
 
     }
 }

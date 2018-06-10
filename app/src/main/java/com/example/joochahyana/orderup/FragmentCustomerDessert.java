@@ -19,11 +19,13 @@ public class FragmentCustomerDessert extends Fragment{
 
     AdapterCustomerDessert adapter = null;
     ArrayList<Foods> arrayListCustomerDessert;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        makeAdapter();
+    }
 
+    private void makeAdapter() {
         arrayListCustomerDessert = new ArrayList<Foods>();
         adapter = new AdapterCustomerDessert(getActivity(), arrayListCustomerDessert);
 
@@ -40,6 +42,7 @@ public class FragmentCustomerDessert extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        makeAdapter();
         View rootView = inflater.inflate(R.layout.fragment_customer_dessert, container, false);
         return rootView;
     }

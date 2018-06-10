@@ -29,18 +29,19 @@
         android:layout_alignParentBottom="true">
 
         <TextView
+            android:id="@+id/textViewCustomerOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="Total Price :"
-            android:id="@+id/textViewCustomerOrderTotalPrice"/>
+            android:text="Total Price :" />
 
         <TextView
+            android:id="@+id/textViewCustomerOrderTotalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="$ Total Amount"
-            android:id="@+id/textViewCustomerOrderTotalAmount"/>
+            android:autoText="false"
+            android:text="$ Total amount" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,13 +50,21 @@
             android:gravity="right"
             android:layout_marginHorizontal="10dp">
 
+            <EditText
+                android:id="@+id/textViewCustomerOrderTableNumber"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:numeric="integer"
+                android:text="10"
+                android:textSize="18sp" />
+
             <Button
-                android:layout_width="75dp"
-                android:layout_height="40dp"
+                android:id="@+id/buttonCustomerOrder"
+                android:layout_width="62dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:text="Order"
-                android:textSize="12dp"
-                android:id="@+id/buttonCustomerOrder"/>
+                android:textSize="12dp" />
 
         </LinearLayout>
 

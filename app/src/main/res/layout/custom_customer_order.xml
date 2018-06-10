@@ -61,28 +61,31 @@
                 android:layout_marginHorizontal="10dp">
 
                 <ImageView
+                    android:id="@+id/imageCustomerOrderMinus"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/minus"
-                    android:id="@+id/imageCustomerOrderMinus"/>
+                    android:clickable="true"
+                    android:src="@drawable/minus" />
 
                 <TextView
+                    android:id="@+id/textCustomerOrderQuantity"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:gravity="center"
                     android:background="@drawable/rectangle"
-                    android:text="1"
-                    android:id="@+id/textCustomerOrderQuantity"/>
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="1" />
 
                 <ImageView
+                    android:id="@+id/imageCustomerOrderPlus"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/plus"
-                    android:id="@+id/imageCustomerOrderPlus"/>
+                    android:clickable="true"
+                    android:src="@drawable/plus" />
 
             </LinearLayout>
 

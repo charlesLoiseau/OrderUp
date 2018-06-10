@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
          plz,plz set ResetDbMode false
      */
-    private static final boolean ResetDbMode = false;// for reset Db by using app
+    private static final boolean ResetDbMode = true;// for reset Db by using app
 
 
     Button buttonCustomer, buttonStaff, buttonResetDb;
@@ -95,37 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
-        if (DatabaseItemType.find(DatabaseItemType.class, "name = ?","Appetizers").isEmpty()) {
-            DatabaseItemType appetizers = new DatabaseItemType("Appetizers");
-            appetizers.save();
-        }
-        if (DatabaseItemType.find(DatabaseItemType.class, "name = ?","Beverages").isEmpty()) {
-            DatabaseItemType beverages = new DatabaseItemType("Beverages");
-            beverages.save();
-        }
-        if (DatabaseItemType.find(DatabaseItemType.class, "name = ?","Dishes").isEmpty()) {
-            DatabaseItemType dishes = new DatabaseItemType("Dishes");
-            dishes.save();
-        }
-        if (DatabaseItemType.find(DatabaseItemType.class, "name = ?","Desserts").isEmpty()) {
-            DatabaseItemType desserts = new DatabaseItemType("Desserts");
-            desserts.save();
-        }
-        // Cook -> Waiter -> Customer Order State
-        if (DatabaseOrderState.find(DatabaseOrderState.class, "name = ?","Cook").isEmpty()) {
-            DatabaseItemType cook = new DatabaseItemType("Cook");
-            cook.save();
-        }
-        if (DatabaseOrderState.find(DatabaseOrderState.class, "name = ?","Waiter").isEmpty()) {
-            DatabaseItemType waiter = new DatabaseItemType("Waiter");
-            waiter.save();
-        }
-        if (DatabaseOrderState.find(DatabaseOrderState.class, "name = ?","Customer").isEmpty()) {
-            DatabaseItemType customer = new DatabaseItemType("Customer");
-            customer.save();
-        }
-//ggjgkp??
+        orderupdbInit();
     }
 
     private void launchActivityCustomer(){
@@ -144,6 +114,56 @@ public class MainActivity extends AppCompatActivity {
         schemaGenerator.deleteTables(new SugarDb(getApplicationContext()).getDB());
         SugarContext.init(getApplicationContext());
         schemaGenerator.createDatabase(new SugarDb(getApplicationContext()).getDB());
+        orderupdbInit();
 
     }
+
+    private void orderupdbInit(){
+
+        if (DatabaseItemType.find(DatabaseItemType.class, "name = ?","Appetizers").isEmpty()) {
+            DatabaseItemType appetizers = new DatabaseItemType("Appetizers");
+            appetizers.save();
+        }
+        if (DatabaseItemType.find(DatabaseItemType.class, "name = ?","Beverages").isEmpty()) {
+            DatabaseItemType beverages = new DatabaseItemType("Beverages");
+            beverages.save();
+        }
+        if (DatabaseItemType.find(DatabaseItemType.class, "name = ?","Dishes").isEmpty()) {
+            DatabaseItemType dishes = new DatabaseItemType("Dishes");
+            dishes.save();
+        }
+        if (DatabaseItemType.find(DatabaseItemType.class, "name = ?","Desserts").isEmpty()) {
+            DatabaseItemType desserts = new DatabaseItemType("Desserts");
+            desserts.save();
+        }
+
+
+        if (DatabaseOrderState.find(DatabaseOrderState.class, "name = ?","Before ordering").isEmpty()) {
+            DatabaseOrderState Bf = new DatabaseOrderState("Before ordering");
+            Bf.save();
+        }
+        if (DatabaseOrderState.find(DatabaseOrderState.class, "name = ?","Ordering").isEmpty()) {
+            DatabaseOrderState Ordering = new DatabaseOrderState("Ordering");
+            Ordering.save();
+        }
+        if (DatabaseOrderState.find(DatabaseOrderState.class, "name = ?","After ordering").isEmpty()) {
+            DatabaseOrderState Ao = new DatabaseOrderState("After ordering");
+            Ao.save();
+        }
+        if (DatabaseUserType.find(DatabaseUserType.class, "name = ?","Cook").isEmpty()) {
+            DatabaseUserType cook = new DatabaseUserType("Cook");
+            cook.save();
+        }
+        if (DatabaseUserType.find(DatabaseUserType.class, "name = ?","Waiter").isEmpty()) {
+            DatabaseUserType waiter = new DatabaseUserType("Waiter");
+            waiter.save();
+        }
+        if (DatabaseUserType.find(DatabaseUserType.class, "name = ?","Customer").isEmpty()) {
+            DatabaseUserType customer = new DatabaseUserType("Customer");
+            customer.save();
+        }
+
+    }
+
+
 }

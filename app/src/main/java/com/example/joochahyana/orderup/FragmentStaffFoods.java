@@ -24,24 +24,18 @@ public class FragmentStaffFoods extends Fragment{
     int i=0;
     AdapterStaffFoods adapter;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        makeAdapter();
+    }
 
+    private void makeAdapter() {
         ArrayList<Foods> arrayListStaffFoods = new ArrayList<Foods>();
         adapter = new AdapterStaffFoods(getActivity(), arrayListStaffFoods);
 
-
-         /*
-        foodNumber = arrayListSffFoods.size();
-        for(int i=0; i<foodNumber; i++){
-            adapter.add(arrayListStaffFoods.get(i));
-
-        }*/
-
-         // jo
         List<DatabaseItems> dbItems = DatabaseItems.listAll(DatabaseItems.class);
-
 
         for(int i=0; i<dbItems.size(); i++){
 
@@ -55,27 +49,12 @@ public class FragmentStaffFoods extends Fragment{
 
 
         }
-
-
-
-
-        /*
-        *
- List<DatabaseReceipt> dbRecipt = DatabaseReceipt.listAll(DatabaseReceipt.class);
-
-        Log.d(TAG, "onCreate: "+dbRecipt.get(0).time.toString());
-
-
-        * */
-
-
     }
-
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    makeAdapter();
 
         View rootView = inflater.inflate(R.layout.fragment_staff_foods, container, false);
         addButton = (FloatingActionButton)rootView.findViewById(R.id.buttonAdd);
@@ -90,25 +69,6 @@ public class FragmentStaffFoods extends Fragment{
 
         });
 
-
-
-        /*
-        delButton = (Button)rootView.findViewById(R.id.buttonDel);
-
-        delButton.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public  void onClick(View view){
-
-
-                DatabaseItems.deleteAll(DatabaseItems.class);
-                DatabaseMenu.deleteAll(DatabaseMenu.class);
-                DatabaseMenuItem.deleteAll(DatabaseMenuItem.class);
-                DatabaseItemsImage.deleteAll(DatabaseItems.class);
-
-            }
-
-        });
-        */
 
         return rootView;
     }

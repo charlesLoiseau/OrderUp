@@ -22,9 +22,10 @@ public class FragmentStaffBills extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        makeAdapter();
+    }
 
-
-
+    private void makeAdapter() {
         ArrayList<Bills> arrayListStaffBills = new ArrayList<Bills>();
         adapter = new AdapterStaffBills(getActivity(), arrayListStaffBills);
 
@@ -34,18 +35,18 @@ public class FragmentStaffBills extends Fragment {
 
 
         for(int i=0; i<dbReceipt.size(); i++){
-            Log.e("error","hi"+dbReceipt.size());
-
-                Bills tempBills = new Bills(dbReceipt.get(i).tnumber,dbReceipt.get(i).price);
+            if(dbReceipt.get(i).paid==false) {
+                Bills tempBills = new Bills(dbReceipt.get(i).tnumber, dbReceipt.get(i).price);
+                tempBills.setId(dbReceipt.get(i).getId());
                 adapter.add(tempBills);
-
-
+            }
         }
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        makeAdapter();
         View rootView = inflater.inflate(R.layout.fragment_staff_bills, container, false);
         return rootView;
     }

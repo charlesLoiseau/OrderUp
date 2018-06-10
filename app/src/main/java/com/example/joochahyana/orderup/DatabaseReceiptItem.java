@@ -17,4 +17,6 @@ public class DatabaseReceiptItem extends SugarRecord {
         this.menu = menu;
         this.item = item;
     }
+
+
 }

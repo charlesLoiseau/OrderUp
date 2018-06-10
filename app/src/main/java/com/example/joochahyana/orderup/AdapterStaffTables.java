@@ -48,18 +48,6 @@ public class AdapterStaffTables extends ArrayAdapter<Tables> {
 
         textName.setText( tempTable.table);
 
-//        Spinner spinner = (Spinner)customView.findViewById(R.id.spinnerStaffTable);
-//
-//        List<DatabaseItems> dbItems = DatabaseItems.listAll(DatabaseItems.class);
-//        String[] list = new String[]{
-//                "order 1",
-//                "order 2",
-//                "order 3"};
-//
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, list);
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-//        spinner.setAdapter(dataAdapter);
-
         arrayListStaffTables_Foods = new ArrayList<Tables_Foods>();
         adapter2 = new AdapterStaffTables_Foods(context, arrayListStaffTables_Foods);
 
@@ -79,7 +67,6 @@ public class AdapterStaffTables extends ArrayAdapter<Tables> {
         ViewGroup.LayoutParams params = listView2.getLayoutParams();
         listView2.setVisibility(View.GONE);
         params.height = getParamsHeight(parent,5,40);
-        Toast.makeText( this.context,"the height is " + params.height,Toast.LENGTH_LONG).show();
         listView2.setLayoutParams(params);
 
         if(adapter2 != null){
