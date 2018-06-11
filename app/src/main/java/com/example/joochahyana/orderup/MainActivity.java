@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
          plz,plz set ResetDbMode false
      */
-    private static final boolean ResetDbMode = true;// for reset Db by using app
+    private static final boolean ResetDbMode = false;// for reset Db by using app
 
 
     Button buttonCustomer, buttonStaff, buttonResetDb;
